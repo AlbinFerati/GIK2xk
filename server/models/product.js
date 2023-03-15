@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       title: {
+        // FUNDERA OM VI VILL HA VALIDATOR
         type: DataTypes.STRING(64),
         allowNull: false,
       },
