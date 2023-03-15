@@ -1,26 +1,27 @@
 const router = require('express').Router();
+const { validate } = require('validate.js');
 const db = require('../models');
+const prodService = require('../services/prodService');
 
 router.get('/', (req, res) => {
-  db.product.findAll().then((result) => {
-    res.send(result);
+  prodService.getAll().then((result) => {
+    res.status(result.status).json(result.data);
   });
 });
 
 router.post('/', (req, res) => {
-  db.product.create(req.body).then((result) => {
-    res.send(result);
+  const product = req.body;
+  prodService.create(product).then((result) => {
+    res.status(result.status).json(result.data);
   });
 });
 
 router.put('/', (req, res) => {
-  db.product
-    .update(req.body, {
-      where: { id: req.body.id },
-    })
-    .then((result) => {
-      res.send(result);
-    });
+  const product = req.body;
+  const id = product.id;
+  prodService.update(product, id).then((result) => {
+    res.status(result.status).json(result.data);
+  });
 });
 
 router.delete('/', (req, res) => {

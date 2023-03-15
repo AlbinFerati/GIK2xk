@@ -26,8 +26,8 @@ var server = http.createServer(app);
  */
 const db = require('../models/');
 db.sequelize
-  .sync()
-  // .sync({ force: true })
+  .sync() // AKTIVERA DENNA NÄR DU LÄGGER TILL I DATABAS
+  // .sync({ force: true })   AKTIVERA DENNA NÄR DU PILLAR I DATABAS
   .then(() => {
     server.listen(port, () => {
       console.log(`Server running on localhost:${port}`);

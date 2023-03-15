@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       payed: {
-        type: DataTypes.TINYINT(1),
+        type: DataTypes.BOOLEAN,
         allowNull: false,
       },
     },

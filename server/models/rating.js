@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       rating: {
+        //Fundera på validator 1-10
         type: DataTypes.DOUBLE,
         allowNull: false,
       },

@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-      },
+      }, // Hur räknas amount ut?
       amount: {
         type: DataTypes.DOUBLE,
         allowNull: false,
