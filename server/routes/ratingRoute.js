@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const db = require('../models');
 
+router.get('/:id/product', (req, res) => {});
+
 router.get('/', (req, res) => {
   db.rating.findAll().then((result) => {
     res.send(result);

@@ -1,5 +1,14 @@
 const router = require('express').Router();
+const prodService = require('../services/prodService');
 const db = require('../models');
+
+router.get('/:id', (req, res) => {
+  const id = req.params.id;
+
+  prodService.getById(id).then((result) => {
+    res.status(result.status).json(result.data);
+  });
+});
 
 router.get('/', (req, res) => {
   db.cart.findAll().then((result) => {
@@ -12,7 +21,6 @@ router.post('/', (req, res) => {
     res.send(result);
   });
 });
-
 router.put('/', (req, res) => {
   db.cart
     .update(req.body, {

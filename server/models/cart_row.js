@@ -7,10 +7,6 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       }, // Hur räknas amount ut?
-      amount: {
-        type: DataTypes.DOUBLE,
-        allowNull: false,
-      },
       quantity: {
         type: DataTypes.INTEGER,
         allowNull: false,
