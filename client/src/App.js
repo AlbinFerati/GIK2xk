@@ -18,13 +18,10 @@ function App() {
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <Link to="/">Home</Link>
+              <Link to="/products">Home</Link>
             </Typography>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <Link to="/product/:id/edit">Update products</Link>
-            </Typography>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <Link to="/product/new">Create product</Link>
+              <Link to="/products/new">Create product</Link>
             </Typography>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <Link to="/cart">Cart</Link>
@@ -34,25 +31,25 @@ function App() {
       </Box>
       <div>
         <Routes>
-          <Route path="/" element={<Home>Hej Mikaela</Home>}></Route>
+          <Route path="/products" element={<Home>Hej Mikaela</Home>}></Route>
           <Route
             exact
-            path="/product/new"
+            path="/products/new"
             element={<ProductCreate></ProductCreate>}
           ></Route>
           <Route
             exact
-            path="/rating/:rating/product"
+            path="/rating/:rating/products"
             element={<Product></Product>}
           ></Route>
           <Route
             exact
-            path="/product/:id/edit"
+            path="/products/:id/edit"
             element={<ProductEdit></ProductEdit>}
           ></Route>
           <Route
             exact
-            path="/product/:id"
+            path="/products/:id"
             element={<ProductDetail></ProductDetail>}
           ></Route>
           <Route path="/cart" element={<Cart></Cart>}></Route>

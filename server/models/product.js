@@ -22,9 +22,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       imageUrl: {
         type: DataTypes.STRING(255),
-        validate: {
-          isUrl: true,
-        },
       },
     },
     { underscored: true }

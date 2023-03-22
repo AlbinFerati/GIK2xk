@@ -1,6 +1,6 @@
 import api from '../api.js';
 
-export async function getAll(url = '/prods') {
+export async function getAll(url = '/products') {
   const result = await api.get(url);
 
   if (result.status === 200) return result.data;
@@ -12,7 +12,7 @@ export async function getAll(url = '/prods') {
 }
 
 export async function getOne(id) {
-  const result = await api.get(`/product/${id}`);
+  const result = await api.get(`/products/${id}`);
 
   if (result.status === 200) return result.data;
   else {
@@ -23,7 +23,7 @@ export async function getOne(id) {
 }
 
 export async function update(product) {
-  const result = await api.put(`/product/`, product);
+  const result = await api.put(`/products/`, product);
 
   if (result.status === 200) return result.data;
   else {
@@ -34,7 +34,7 @@ export async function update(product) {
 }
 
 export async function create(product) {
-  const result = await api.post(`/product/`, product);
+  const result = await api.post(`/products/`, product);
 
   if (result.status === 200) return result.data;
   else {
@@ -45,7 +45,7 @@ export async function create(product) {
 }
 
 export async function obliterate(id) {
-  const result = await api.delete(`/product/`, { data: { id } });
+  const result = await api.delete(`/products/`, { data: { id } });
 
   if (result.status === 200) return result.data;
   else {

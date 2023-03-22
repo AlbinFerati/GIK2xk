@@ -14,11 +14,16 @@ function ProductItemSmall({ product }) {
   return product ? (
     <>
       <div>
-        <img alt="Something" height={65} width="65" src={product.imageUrl} />
+        <img
+          alt="Something small"
+          height={65}
+          width="65"
+          src={product.imageUrl} //ÄNDRAD
+        />
       </div>
       <div>
         <Typography variant="h5" component="h3">
-          <Link to={`/product/${product.id}`}>{product.title}</Link>
+          <Link to={`/products/${product.id}/`}>{product.title}</Link>
         </Typography>
         <p>{product.description}</p>
         <p>{product.price} kr.</p>

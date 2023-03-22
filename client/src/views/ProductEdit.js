@@ -26,6 +26,7 @@ function ProductEdit() {
     }
     // eslint-disable-next-line
   }, [prodId]);
+
   function onChange(e) {
     const name = e.target.name;
     const value = e.target.value;

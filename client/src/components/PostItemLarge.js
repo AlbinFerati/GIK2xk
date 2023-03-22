@@ -9,12 +9,6 @@ function PostItemLarge({ product }) {
         <p>{product.description}</p>
         <p>{product.price} kr.</p>
       </>
-      <div>
-        {product.rating &&
-          product.rating.map((rating, i) => (
-            <p key={`ratingId_${i}`}>{rating.rating} </p> // rating.rating??? Är detta rätt Mikaela, hjälp oss! *Smallville intro. somebody save me*
-          ))}
-      </div>
     </>
   ) : (
     <>Product missing</>
@@ -22,3 +16,10 @@ function PostItemLarge({ product }) {
 }
 
 export default PostItemLarge;
+
+// <div>
+// {product.rating &&
+//   product.rating.map((rating, i) => (
+//     <p key={`ratingId_${i}`}>{rating.rating} </p> // rating.rating??? Är detta rätt Mikaela, hjälp oss! *Smallville intro. Somebody save me*
+//   ))}
+// </div>

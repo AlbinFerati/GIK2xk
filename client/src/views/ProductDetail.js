@@ -21,7 +21,7 @@ function ProductDetail() {
       <Button variant="contained" color="primary">
         Add to cart
       </Button>
-      <Link to={`/product/${prodId}/edit`}>
+      <Link to={`/products/${prodId}/edit`}>
         <Button variant="contained" color="primary">
           Edit Product
         </Button>

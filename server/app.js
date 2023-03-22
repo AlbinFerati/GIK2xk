@@ -16,7 +16,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/prods', require('./routes/prodRoute'));
+app.use('/products', require('./routes/prodRoute'));
 app.use('/user', require('./routes/userRoute'));
 app.use('/rating', require('./routes/ratingRoute'));
 app.use('/cart', require('./routes/cartRoute'));

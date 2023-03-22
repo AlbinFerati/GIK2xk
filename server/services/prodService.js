@@ -60,7 +60,6 @@ async function create(product) {
   }
   try {
     const newProd = await db.product.create(product);
-    await _addRatingToProd(newProd, product.rating); //tabort?
     return createResponseSuccess(newProd);
   } catch (error) {
     return createResponseError(error.status, error.message);
@@ -99,7 +98,7 @@ async function destroy(id) {
   }
 }
 
-//http://localhost:5000/prods/1/user/1/addToCart
+//http://localhost:5000/product/1/user/1/addToCart
 async function addToCart(userId, productId, cartRow) {
   if (!userId) {
     return createResponseError(422, 'User-Id is mandatory');
