@@ -98,57 +98,11 @@ async function destroy(id) {
   }
 }
 
-//http://localhost:5000/product/1/user/1/addToCart
-async function addToCart(userId, productId, cartRow) {
-  if (!userId) {
-    return createResponseError(422, 'User-Id is mandatory');
-  }
-  try {
-    cartRow.productId = productId;
-    const cart = await db.cart.findOne({
-      where: { userId },
-    });
-    cartRow.cartId = cart.id;
-    console.log(cart.id);
-
-    await db.cartRow.create(cartRow);
-    const newCartWithProducts = await db.cart.findOne({
-      where: { id: cart.id },
-      include: [db.cartRow],
-    });
-
-    return createResponseSuccess(newCartWithProducts);
-  } catch (error) {
-    return createResponseError(error.status, error.message);
-  }
-}
-
-// alternativa
-// async function addToCart(id, product) {
-//   try {
-//     const existingProduct = await db.product.findOne({ where: { id } });
-
-//     if (!existingProduct) {
-//       return createResponseError(422, 'Invalid product id');
-//     }
-
-//     const cart = await db.cart.create();
-//     await cart.addProduct(existingProduct, {
-//       through: { amount: product.amount },
-//     });
-
-//     return createResponseSuccess(cart);
-//   } catch (error) {
-//     return createResponseError(error.status, error.message);
-//   }
-// }
-
 module.exports = {
   getById,
   getAll,
   create,
   addRating,
-  addToCart,
   update,
   destroy,
 };

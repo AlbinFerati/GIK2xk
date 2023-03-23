@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import PostItemLarge from '../components/PostItemLarge';
+import ProductItemLarge from '../components/ProductItemLarge';
 import { getOne } from '../models/ProductModel';
 
 function ProductDetail() {
@@ -9,14 +9,14 @@ function ProductDetail() {
   const prodId = params.id;
   console.log(params);
 
-  const [postman, setProduct] = useState({});
+  const [product, setProduct] = useState({});
   useEffect(() => {
-    getOne(prodId).then((postman) => setProduct(postman));
+    getOne(prodId).then((product) => setProduct(product));
   }, [prodId]);
 
   return (
     <>
-      <PostItemLarge postman={postman} />
+      <ProductItemLarge product={product} />
 
       <Button variant="contained" color="primary">
         Add to cart

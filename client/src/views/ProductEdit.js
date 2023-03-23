@@ -14,12 +14,12 @@ function ProductEdit() {
     price: 0.0,
     imageUrl: '',
   };
-  const [postman, setProduct] = useState({ emptyProd });
+  const [product, setProduct] = useState({ emptyProd });
 
   useEffect(() => {
     if (!isNaN(prodId)) {
-      getOne(prodId).then((postman) =>
-        setProduct({ ...postman, imageUrl: postman.imageUrl || ' ' })
+      getOne(prodId).then((product) =>
+        setProduct({ ...product, imageUrl: product.imageUrl || ' ' })
       );
     } else {
       setProduct(emptyProd);
@@ -31,25 +31,25 @@ function ProductEdit() {
     const name = e.target.name;
     const value = e.target.value;
 
-    const newProduct = { ...postman, [name]: value };
+    const newProduct = { ...product, [name]: value };
     setProduct(newProduct);
   }
   function onSave() {
-    if (postman.id === 0) {
-      create(postman).then(() => console.log('Saved'));
+    if (product.id === 0) {
+      create(product).then(() => console.log('Saved'));
     } else {
-      update(postman).then(() => console.log('Updated'));
+      update(product).then(() => console.log('Updated'));
     }
   }
 
   function onDelete() {
-    obliterate(postman.id).then(() => console.log('Product obliterated'));
+    obliterate(product.id).then(() => console.log('Product obliterated'));
   }
   return (
     <>
       <form>
         <TextField
-          value={postman.title}
+          value={product.title}
           onChange={onChange}
           name="title"
           id="title"
@@ -58,7 +58,7 @@ function ProductEdit() {
         />{' '}
         <br />
         <TextField
-          value={postman.description}
+          value={product.description}
           onChange={onChange}
           name="description"
           label="description"
@@ -68,7 +68,7 @@ function ProductEdit() {
           fullWidth
         />
         <TextField
-          value={postman.price}
+          value={product.price}
           onChange={onChange}
           name="price"
           id="price"
@@ -77,7 +77,7 @@ function ProductEdit() {
         />{' '}
         <br />
         <TextField
-          value={postman.imageUrl}
+          value={product.imageUrl}
           onChange={onChange}
           name="imageUrl"
           id="imageUrl"
@@ -88,7 +88,7 @@ function ProductEdit() {
         <Button onClick={onSave} variant="contained" color="primary">
           Update
         </Button>
-        {postman.id !== 0 && (
+        {product.id !== 0 && (
           <Button onClick={onDelete} variant="contained" color="primary">
             Delete
           </Button>

@@ -16,12 +16,12 @@ function ProductCreate() {
     price: 0.0,
     imageUrl: '',
   };
-  const [postman, setProduct] = useState({ emptyProd });
+  const [product, setProduct] = useState({ emptyProd });
 
   useEffect(() => {
     if (!isNaN(prodId)) {
-      getOne(prodId).then((postman) =>
-        setProduct({ ...postman, imageUrl: postman.imageUrl || ' ' })
+      getOne(prodId).then((product) =>
+        setProduct({ ...product, imageUrl: product.imageUrl || ' ' })
       );
     } else {
       setProduct(emptyProd);
@@ -30,19 +30,19 @@ function ProductCreate() {
   }, [prodId]);
 
   function onSave() {
-    if (postman.id === 0) {
-      create({ ...postman, userId: 2 }).then(() =>
+    if (product.id === 0) {
+      create({ ...product, userId: 2 }).then(() =>
         console.log('Created product')
       );
     } else {
-      update(postman).then(() => console.log('Updated product'));
+      update(product).then(() => console.log('Updated product'));
     }
   }
   function onChange(e) {
     const name = e.target.name;
     const value = e.target.value;
 
-    const newProduct = { ...postman, [name]: value };
+    const newProduct = { ...product, [name]: value };
     setProduct(newProduct);
   }
 
@@ -50,7 +50,7 @@ function ProductCreate() {
     <>
       <form>
         <TextField
-          value={postman.title}
+          value={product.title}
           onChange={onChange}
           name="title"
           id="title"
@@ -59,7 +59,7 @@ function ProductCreate() {
         />{' '}
         <br />
         <TextField
-          value={postman.description}
+          value={product.description}
           onChange={onChange}
           name="description"
           label="description"
@@ -69,7 +69,7 @@ function ProductCreate() {
           fullWidth
         />
         <TextField
-          value={postman.price}
+          value={product.price}
           onChange={onChange}
           name="price"
           id="price"
@@ -78,7 +78,7 @@ function ProductCreate() {
         />{' '}
         <br />
         <TextField
-          value={postman.imageUrl}
+          value={product.imageUrl}
           onChange={onChange}
           name="imageUrl"
           id="imageUrl"
