@@ -29,7 +29,7 @@ function ProductItemLarge({ product }) {
       <Rating name="Controlled" max={10} />
       <br />
       <Button variant="contained" color="primary">
-        Add ratingjngsjangsj
+        Add rating
       </Button>
       <br />
       <br />
