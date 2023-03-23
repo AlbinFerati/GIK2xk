@@ -12,6 +12,14 @@ router.post('/:id/addRating', (req, res) => {
   });
 });
 
+router.get('/:id/getRating', (req, res) => {
+  const id = req.params.id;
+
+  prodService.getRating(id).then((result) => {
+    res.status(result.status).json(result.data);
+  });
+});
+
 router.get('/:id', (req, res) => {
   const id = req.params.id;
 

@@ -1,9 +1,16 @@
-import { Button, Rating, Typography } from '@mui/material';
+import { Box, Button, Rating, Typography } from '@mui/material';
 import Ratings from './RatingList';
 import {} from '@mui/material';
+import { addRating } from '../models/ProductModel';
+import { useState } from 'react';
 
 function ProductItemLarge({ product }) {
-  console.log(product);
+  function onSave() {
+    console.log(rating);
+    addRating(product.id, rating).then(() => console.log('Saved'));
+  }
+
+  const [rating, setRating] = useState(0);
   return product ? (
     <>
       <>
@@ -26,9 +33,23 @@ function ProductItemLarge({ product }) {
         Our customers rated this product:
       </Typography>
       <Ratings precision={1} max={10} ratings={product.ratings} />
-      <Rating name="Controlled" max={10} />
       <br />
-      <Button variant="contained" color="primary">
+      <Box>
+        <Rating
+          onChange={(e, value) => {
+            setRating(e.target.value);
+          }}
+          name="Rating"
+          defaultValue={0}
+          precision={1}
+          max={10}
+        />
+      </Box>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => onSave(rating)}
+      >
         Add rating
       </Button>
       <br />

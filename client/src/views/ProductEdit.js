@@ -34,6 +34,7 @@ function ProductEdit() {
     const newProduct = { ...product, [name]: value };
     setProduct(newProduct);
   }
+
   function onSave() {
     if (product.id === 0) {
       create(product).then(() => console.log('Saved'));

@@ -39,6 +39,20 @@ async function getAll() {
   }
 }
 
+async function getRating(id) {
+  const product = await getById(id);
+  try {
+    const productRating = product.data.ratings;
+    if (!productRating) {
+      return createResponseError(404, 'Ingen rating hittad');
+    } else {
+      return createResponseSuccess(productRating);
+    }
+  } catch (error) {
+    return createResponseError(error.status, error.message);
+  }
+}
+
 async function addRating(id, rating) {
   if (!id) {
     return createResponseError(422, 'Id is mandatory');
@@ -102,6 +116,7 @@ module.exports = {
   getById,
   getAll,
   create,
+  getRating,
   addRating,
   update,
   destroy,

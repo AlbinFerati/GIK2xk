@@ -1,5 +1,4 @@
-import { Rating, Typography } from '@mui/material';
-import Ratings from './RatingList';
+import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 function ProductItemSmall({ product }) {
@@ -19,8 +18,6 @@ function ProductItemSmall({ product }) {
         </Typography>
         <p>{product.description}</p>
         <p>{product.price} kr.</p>
-        <Ratings precision={1} max={10} rating={product.rating} Controlled />
-        <Rating name="read-only" max={10} readOnly />
       </div>
     </>
   ) : (

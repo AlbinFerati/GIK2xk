@@ -6,7 +6,7 @@ function Rating({ ratings }) {
   // useEffect(() => {
   //   getAll().then((ratingman) => setRating(ratingman));
   // }, []);
-  console.log(ratings);
+
   return ratings ? (
     <>
       <ul>
