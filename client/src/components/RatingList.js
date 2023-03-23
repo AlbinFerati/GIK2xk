@@ -1,6 +1,4 @@
 import { Chip } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { getAll } from '../models/RatingModel';
 
 function Rating({ ratings }) {
   // const [rating, setRating] = useState([]);
