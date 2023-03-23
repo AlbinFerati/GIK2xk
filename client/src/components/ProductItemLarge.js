@@ -35,7 +35,7 @@ function ProductItemLarge({ product }) {
       <br />
     </>
   ) : (
-    <>Product missing</>
+    <>Product misssing</>
   );
 }
 
