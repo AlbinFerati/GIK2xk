@@ -1,26 +1,20 @@
 import api from '../api.js';
 
-export async function getAvgRating(id) {
-  try {
-    const ratings = await getRating(id);
-    const sum = ratings.reduce((acc, rating) => acc + rating.counter, 0);
-    const avg = sum / ratings.length;
-    return avg;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-}
-
 export async function getRating(id) {
   try {
-    const response = await api.get(`/product/${id}/getRating`, {
-      data: { id },
-    });
+    const response = await api.get(`/product/${id}/getRating`);
     return response.data || [];
   } catch (error) {
     console.error(error);
     return [];
+  }
+}
+
+export function getAvgRating(ratings) {
+  if (ratings) {
+    const sum = ratings.reduce((acc, rating) => acc + rating.rating, 0);
+    const avg = sum / ratings.length;
+    return avg;
   }
 }
 

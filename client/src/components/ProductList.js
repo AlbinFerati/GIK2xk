@@ -4,16 +4,16 @@ import ProductItemSmall from './ProductItemSmall';
 
 function ProductList({ pathname }) {
   console.log(pathname);
-  const [postman, setProduct] = useState([]);
+  const [product, setProduct] = useState([]);
 
   useEffect(() => {
-    getAll(pathname).then((postman) => setProduct(postman));
+    getAll(pathname).then((product) => setProduct(product));
   }, [pathname]);
 
   return (
     <ul>
-      {postman &&
-        postman.map((product) => {
+      {product &&
+        product.map((product) => {
           return (
             <li key={`productId_${product.id}`}>
               <ProductItemSmall product={product} />

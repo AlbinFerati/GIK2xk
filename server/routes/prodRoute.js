@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const prodService = require('../services/prodService');
 
-// SÖK EFTER http://localhost:5000/product/1 FÖR ATT FÅ FRAM RATING
+//  http://localhost:5000/product/1
 
 router.post('/:id/addRating', (req, res) => {
   const rating = req.body;

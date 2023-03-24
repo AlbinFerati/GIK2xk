@@ -19,7 +19,6 @@ app.use(cookieParser());
 app.use('/products', require('./routes/prodRoute'));
 app.use('/user', require('./routes/userRoute'));
 app.use('/rating', require('./routes/ratingRoute'));
-app.use('/cart', require('./routes/cartRoute'));
-app.use('/cartRow', require('./routes/cartRowRoute'));
+app.use('/carts', require('./routes/cartRoute'));
 
 module.exports = app;

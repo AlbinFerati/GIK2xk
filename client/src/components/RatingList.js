@@ -1,20 +1,12 @@
-import { Chip } from '@mui/material';
-
 function Rating({ ratings }) {
-  // const [rating, setRating] = useState([]);
-
-  // useEffect(() => {
-  //   getAll().then((ratingman) => setRating(ratingman));
-  // }, []);
-
   return ratings ? (
     <>
-      <ul>
+      <div>
         {ratings &&
-          ratings.map((rating) => {
-            return <Chip key={rating.id} label={`${rating.rating}/10`}></Chip>;
-          })}
-      </ul>
+          ratings.map((rating) => (
+            <div key={rating.id}>{rating.rating}/10</div>
+          ))}
+      </div>
     </>
   ) : (
     <>Rating missing</>

@@ -3,14 +3,16 @@ import Ratings from './RatingList';
 import {} from '@mui/material';
 import { addRating } from '../models/ProductModel';
 import { useState } from 'react';
+import { getAvgRating } from '../models/RatingModel';
+import { Chip } from '@mui/material';
 
 function ProductItemLarge({ product }) {
+  const [rating, setRating] = useState(0);
+
   function onSave() {
-    console.log(rating);
     addRating(product.id, rating).then(() => console.log('Saved'));
   }
 
-  const [rating, setRating] = useState(0);
   return product ? (
     <>
       <>
@@ -29,6 +31,12 @@ function ProductItemLarge({ product }) {
         <p>{product.description}</p>
         <p>{product.price} kr.</p>
       </>{' '}
+      <br />
+      <Typography fontWeight={800}>Average rating of the product:</Typography>
+      <br />
+      {product?.ratings && <span>{getAvgRating(product?.ratings)}/10</span>}
+      <br />
+      <br />
       <Typography fontWeight={800}>
         Our customers rated this product:
       </Typography>

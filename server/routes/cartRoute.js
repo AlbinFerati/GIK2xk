@@ -1,44 +1,51 @@
 const router = require('express').Router();
-const prodService = require('../services/prodService');
+const cartService = require('../services/cartService');
 const db = require('../models');
 
 router.get('/:id', (req, res) => {
   const id = req.params.id;
-
-  prodService.getById(id).then((result) => {
+  cartService.getById(id).then((result) => {
     res.status(result.status).json(result.data);
   });
 });
 
-router.get('/', (req, res) => {
-  db.cart.findAll().then((result) => {
-    res.send(result);
+router.post('/:cartId/addProduct/:productId', (req, res) => {
+  const quantity = req.body.amount;
+  const productId = req.params.productId;
+  const cartId = req.params.cartId;
+  cartService.addProduct(cartId, productId, quantity).then((result) => {
+    res.status(result.status).json(result.data);
   });
 });
 
-router.post('/', (req, res) => {
-  db.cart.create(req.body).then((result) => {
-    res.send(result);
+router.delete('/:cartId/removeProduct/:productId', (req, res) => {
+  const quantity = req.body.amount;
+  const prodId = req.params.productId;
+  const cartId = req.params.cartId;
+  cartService.deleteProduct(cartId, prodId, quantity).then((result) => {
+    res.status(result.status).json(result.data);
   });
 });
+
+router.post('/create', (req, res) => {
+  cartService.create().then((result) => {
+    res.status(result.status).json(result.data);
+  });
+});
+
 router.put('/', (req, res) => {
-  db.cart
-    .update(req.body, {
-      where: { id: req.body.id },
-    })
-    .then((result) => {
-      res.send(result);
-    });
+  const post = req.body;
+  const id = post.id;
+  cartService.update(id, post).then((result) => {
+    res.status(result.status).json(result.data);
+  });
 });
 
 router.delete('/', (req, res) => {
-  db.cart
-    .destroy({
-      where: { id: req.body.id },
-    })
-    .then((result) => {
-      res.json(`Produkten med id ${result} raderades`);
-    });
+  const id = req.body.id;
+  cartService.destroy(id).then((result) => {
+    res.status(result.status).json(result.data);
+  });
 });
 
 module.exports = router;

@@ -1,14 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
-    'cart_row',
+    'cartProduct',
     {
-      id: {
+      amount: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-      },
-      quantity: {
-        type: DataTypes.INTEGER,
+        defaultValue: 0,
         allowNull: false,
       },
     },

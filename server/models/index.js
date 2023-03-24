@@ -3,8 +3,6 @@
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
-const process = require('process');
-const cart_row = require('./cart_row');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
@@ -45,29 +43,13 @@ Object.keys(db).forEach((modelName) => {
   }
 });
 
-db.user.hasMany(db.cart, {
-  allowNull: false,
-  onDelete: 'CASCADE',
-});
+db.cart.belongsToMany(db.product, { through: db.cartProduct });
+db.product.belongsToMany(db.cart, { through: db.cartProduct });
 
-db.cart.belongsTo(db.user);
-db.cart.hasMany(db.cart_row, {
-  allowNull: false,
-  onDelete: 'CASCADE',
-});
-
-db.cart_row.belongsTo(db.product);
-db.cart_row.belongsTo(db.cart);
-
-db.product.hasMany(db.cart_row, {
-  allowNull: false,
-  onDelete: 'CASCADE',
-});
 db.product.hasMany(db.rating, {
   allowNull: false,
   onDelete: 'CASCADE',
 });
-
 db.rating.belongsTo(db.product);
 
 db.sequelize = sequelize;

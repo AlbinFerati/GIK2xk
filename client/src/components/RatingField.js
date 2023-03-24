@@ -5,7 +5,7 @@ function RatingField({ onSave }) {
   const [rating, setRating] = useState('');
   return (
     <>
-      <TextField //Ändra till Rating?
+      <TextField
         name="ratings"
         label="Ratings"
         value={rating}

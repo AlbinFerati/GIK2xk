@@ -7,9 +7,10 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      payed: {
-        type: DataTypes.BOOLEAN,
+      priceTotal: {
         allowNull: false,
+        type: DataTypes.FLOAT,
+        defaultValue: 0,
       },
     },
     { underscored: true }
