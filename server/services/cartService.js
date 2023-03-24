@@ -8,7 +8,7 @@ const {
 
 async function getById(id) {
   if (!id) {
-    return createResponseError(422, `cart id not defined`);
+    return createResponseError(422, `cartId wasn't found`);
   }
 
   try {
@@ -18,7 +18,7 @@ async function getById(id) {
     });
 
     if (!cart) {
-      return createResponseError(404, 'Cart not found');
+      return createResponseError(404, 'Missing a cart');
     }
 
     const cartObj = {
@@ -51,7 +51,7 @@ async function getById(id) {
 
 async function addProduct(cartId, productId, quantity) {
   if (!cartId || !productId || !quantity) {
-    return createResponseError(422, 'Request incomplete');
+    return createResponseError(422, 'Error need cartID, ProductID, Quantity');
   }
 
   try {
@@ -59,11 +59,11 @@ async function addProduct(cartId, productId, quantity) {
     const theProduct = await db.product.findOne({ where: { id: productId } });
 
     if (!theCart) {
-      return createResponseError(422, 'Invalid cart id');
+      return createResponseError(422, 'provide the right cartId');
     }
 
     if (!theProduct) {
-      return createResponseError(422, 'Invalid product id');
+      return createResponseError(422, 'provide the right product id');
     }
 
     const [theCartProduct, created] = await db.cartProduct.findOrCreate({
@@ -86,7 +86,7 @@ async function addProduct(cartId, productId, quantity) {
 
 async function deleteProduct(cartId, productId, amount) {
   if (!cartId || !productId || !amount) {
-    return createResponseError(422, 'Incomplete request');
+    return createResponseError(422, 'Error need cartID, ProductID, amount');
   }
 
   try {
@@ -100,7 +100,7 @@ async function deleteProduct(cartId, productId, amount) {
     });
 
     if (!theCart) {
-      return createResponseError(422, 'Invalid cart ID');
+      return createResponseError(422, 'provide the right cartId');
     }
 
     let theCartProduct = await db.cartProduct.findOne({
@@ -139,17 +139,17 @@ async function create() {
 
 async function update(id, cart) {
   if (!id) {
-    return createResponseError(422, 'cart id not defined');
+    return createResponseError(422, "cartId wasn't found");
   }
 
   try {
     const theCart = await db.cart.findOne({ where: { id } });
     if (!theCart) {
-      return createResponseError(404, `cart with id ${id} not found`);
+      return createResponseError(404, "cartId wasn't found");
     }
     await db.cart.update(cart, { where: { id } });
 
-    return createResponseMessage(200, `cart with id ${id} has been updated`);
+    return createResponseMessage(200, `Cart has been updated`);
   } catch (error) {
     return createResponseError(error.status, error.message);
   }
@@ -157,11 +157,11 @@ async function update(id, cart) {
 
 async function destroy(id) {
   if (!id) {
-    return createResponseError(422, 'Id not defined');
+    return createResponseError(422, "Id wasn't found");
   }
   try {
     await db.cart.destroy({ where: { id } });
-    return createResponseMessage(200, `cart with id ${id} has been deleted`);
+    return createResponseMessage(200, `Cart has been deleted`);
   } catch {
     return createResponseError(error.status, error.message);
   }
